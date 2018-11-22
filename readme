@@ -1,0 +1,12 @@
+
+#write
+git clone git@github.com:wh19910525/WangHais-common-code-base.git
+
+#read
+git clone git://github.com/wh19910525/WangHais-common-code-base.git
+
+#username and password
+git clone https://github.com/wh19910525/WangHais-common-code-base.git
+
+====================================
+
