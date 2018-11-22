@@ -52,3 +52,24 @@ exec_cmd(){
     ((exit_code=${exit_code}+1))
     echo
 }
+
+############### func-003, 确认结果 ##############
+confirm_selection(){
+    if [ $# == 0 ];then
+        result="default"
+    else
+        result=$@
+    fi
+
+    echo
+    print_color "Your choose is: [${result}]"
+    echo -n "is this correct [y/n]? "
+    read t_Confirm
+    #echo Confirm=$t_Confirm
+    if [ x$t_Confirm != xy ];then
+        exit 1
+    fi
+}
+
+
+
