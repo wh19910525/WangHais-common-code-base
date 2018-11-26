@@ -10,10 +10,15 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import android.content.Context;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
 import static wanghai.util.Utils.LOG_TAG;
 import static wanghai.util.Utils.DEBUG_FLAG;
 
-public class AdjustBitmap {
+public class BitmapUtils {
 
     /*
      * 将bitmap调整到指定大小;
@@ -118,5 +123,34 @@ public class AdjustBitmap {
         return bitmap;
     }
 
+    /*
+     * 把bitmap保存为 png;
+     */
+    public static boolean saveBitmapAsPng(Bitmap bmp, String filename, Context context) {
+        //ALog.D(LOG_TAG, DEBUG_FLAG, "file_name="+filename);
+
+        File file = new File(filename);
+        if(file.exists()) {
+            file.delete();
+        }
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+            //设置PNG的话，透明区域不会变成黑色
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, ((OutputStream)fileOutputStream));
+
+            fileOutputStream.flush();
+            fileOutputStream.close();
+
+            ALog.I(LOG_TAG, "---------- save success ----------");
+        }catch(Exception v0) {
+            v0.printStackTrace();
+            ALog.I(LOG_TAG, "---------- save picture filed --------");
+            return false;
+        }
+
+        return true;
+    }
 
 }

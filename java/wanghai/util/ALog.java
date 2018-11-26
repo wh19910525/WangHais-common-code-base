@@ -26,6 +26,18 @@ public class ALog {
         Log.i(logtag, logInfo);
     }
 
+    public static void E(String logtag, String msg, Object... arguments) {
+        getMethodNames(new Throwable().getStackTrace());
+        logInfo = createLog(logtag, MessageFormatter.arrayFormat(msg, arguments));
+        Log.e(logtag, logInfo);
+    }
+
+    public static void e(String logtag, String msg, Object... arguments) {
+        getMethodNames(new Throwable().getStackTrace());
+        logInfo = createLog(logtag, MessageFormatter.arrayFormat(msg, arguments));
+        Log.e(logtag, logInfo);
+    }
+
     /*
      *Log的输出, 受开关控制;
      */
@@ -45,9 +57,7 @@ public class ALog {
         }
     }
 
-
 /////////////////////////////////
-
 
     static String className;//类名
     static String methodName;//方法名

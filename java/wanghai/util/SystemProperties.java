@@ -93,8 +93,6 @@ public class SystemProperties {
 
     }
 
-////////////////////////////
-
     // -------------------------------------------------------------------
     private static Class<?> mClassType = null;
 
@@ -129,6 +127,5 @@ public class SystemProperties {
             e.printStackTrace();
         }
     }
-
 
 }

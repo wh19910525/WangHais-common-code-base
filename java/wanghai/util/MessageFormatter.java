@@ -249,4 +249,5 @@ final class MessageFormatter {
         }
         sbuf.append(']');
     }
+
 }
