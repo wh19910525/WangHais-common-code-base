@@ -1,5 +1,7 @@
-#ifndef __NEXGO_DEBUG__
-#define __NEXGO_DEBUG__
+#ifndef __MY_DEBUG__
+#define __MY_DEBUG__
+
+#include "wanghai_c_code_interface.h"
 
 ///////////////////////////////////////////////
 /*
@@ -57,29 +59,29 @@
 #endif //USE_NDK_BUILD
 
 #ifdef DEBUG_FLAG
-#define NEXGO_DEBUG(fmt, ...) \
+#define MY_DEBUG(fmt, ...) \
     ALOGE(MY_TAG " @%s, line=[%d], " fmt, __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
-    #define NEXGO_DEBUG(fmt, ...) //
+    #define MY_DEBUG(fmt, ...) //
 #endif
 
-#define NEXGO_INFO(fmt, ...) \
+#define MY_INFO(fmt, ...) \
     ALOGE(MY_TAG " @%s, line=[%d], " fmt, __FUNCTION__, __LINE__, ##__VA_ARGS__);
 
 #else //BUILD_ANDROID
 
 #ifdef DEBUG_FLAG
-#define NEXGO_DEBUG(fmt, ...) \
+#define MY_DEBUG(fmt, ...) \
     printf(MY_TAG " @%s, line=[%d], " fmt, __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
-    #define NEXGO_DEBUG(fmt, ...)
+    #define MY_DEBUG(fmt, ...)
 #endif
 
-#define NEXGO_INFO(fmt, ...) \
+#define MY_INFO(fmt, ...) \
     printf(MY_TAG " @%s, line=[%d], " fmt, __FUNCTION__, __LINE__, ##__VA_ARGS__);
 
 #endif //BUILD_ANDROID
 
 
-#endif //__NEXGO_DEBUG__
+#endif //__MY_DEBUG__
 
