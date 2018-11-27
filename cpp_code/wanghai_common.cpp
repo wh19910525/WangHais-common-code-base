@@ -2,6 +2,10 @@
 
 using namespace std;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 ///////////////// 统计 程序执行的 时间戳 ////////////////
 static clock_t start_record_time, end_record_time;
 static unsigned long total_cost_time;
@@ -115,3 +119,6 @@ int SystemProperties(const char *key, char *value, const char *default_value)
 }
 #endif //BUILD_ANDROID
 
+#ifdef __cplusplus
+}
+#endif
