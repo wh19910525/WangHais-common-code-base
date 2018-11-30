@@ -10,6 +10,8 @@
 
 package wanghai.util;
 
+import wanghai.util.MessageFormatter;
+
 public class HostLog {
 
     static String className;//类名
@@ -56,6 +58,14 @@ public class HostLog {
         }
     }
 
+    public static void D(String msg, Object... arguments) {
+        if (isDebuggable()) {
+            getMethodNames(new Throwable().getStackTrace());
+            String logInfo = createLog(MessageFormatter.arrayFormat(msg, arguments));
+            System.out.println(logInfo);
+        }
+    }
+
     /*
      *强制输出Log;
      */
@@ -71,6 +81,12 @@ public class HostLog {
         System.out.println(logInfo);
     }
 
+    public static void E(String msg, Object... arguments) {
+        getMethodNames(new Throwable().getStackTrace());
+        String logInfo = createLog(MessageFormatter.arrayFormat(msg, arguments));
+        System.out.println(logInfo);
+    }
+
     public static void info(String msg, Object... arguments) {
         getMethodNames(new Throwable().getStackTrace());
         String logInfo = createLog(MessageFormatter.arrayFormat(msg, arguments));
@@ -78,6 +94,12 @@ public class HostLog {
     }
 
     public static void i(String msg, Object... arguments) {
+        getMethodNames(new Throwable().getStackTrace());
+        String logInfo = createLog(MessageFormatter.arrayFormat(msg, arguments));
+        System.out.println(logInfo);
+    }
+
+    public static void I(String msg, Object... arguments) {
         getMethodNames(new Throwable().getStackTrace());
         String logInfo = createLog(MessageFormatter.arrayFormat(msg, arguments));
         System.out.println(logInfo);

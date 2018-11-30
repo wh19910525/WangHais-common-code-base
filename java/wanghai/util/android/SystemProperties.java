@@ -9,7 +9,7 @@
  *******************************************************
  *******************************************************/
 
-package wanghai.util;
+package wanghai.util.android;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

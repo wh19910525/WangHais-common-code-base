@@ -1,4 +1,4 @@
-package wanghai.util;
+package wanghai.util.android;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

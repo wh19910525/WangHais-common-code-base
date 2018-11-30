@@ -8,7 +8,7 @@
  *******************************************************
  *******************************************************/
 
-package wanghai.util;
+package wanghai.util.android;
 
 import android.util.Log;
 
