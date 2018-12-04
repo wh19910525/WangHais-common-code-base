@@ -13,7 +13,7 @@ package wanghai.util;
 import java.util.HashMap;
 import java.util.Map;
 
-final class MessageFormatter {
+public final class MessageFormatter {
 
     static final char DELIM_START = '{';
     static final char DELIM_STOP = '}';
@@ -251,3 +251,4 @@ final class MessageFormatter {
     }
 
 }
+

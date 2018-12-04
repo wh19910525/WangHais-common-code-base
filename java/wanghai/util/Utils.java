@@ -42,20 +42,23 @@ public class Utils {
         return only_y;
     }
 
-    /*
+    /**
      * 把 byte数组 转换为 字符串;
-     *
      *      如果 数据里有'\0'就停止;
+     *
+     * @param byteArr 数组;
+     *
+     * @return 转换后的 字符串;
      */
-    public static String byteArrayToString(byte[] b){
+    public static String byteArrayToString(byte[] byteArr){
         StringBuffer strbuf = new StringBuffer();
-        for (int i = 0; i < b.length; i++)
+        for (int i = 0; i < byteArr.length; i++)
         {
-            if (b[i] == '\0')
+            if (byteArr[i] == '\0')
             {
                 break;
             }
-            strbuf.append((char) b[i]);
+            strbuf.append((char) byteArr[i]);
         }
 
         return strbuf.toString();
@@ -138,6 +141,19 @@ public class Utils {
         }
 
         return strbuf.toString();
+    }
+
+    /**
+     * 让当前线程等待 milli_second;
+     *
+     * @param milli_second 等待的时间, 单位: 毫秒
+     */
+    public static void sleep(long milli_second) {
+        try {
+            Thread.sleep(milli_second);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -10,6 +10,8 @@
 
 package wanghai.util.android;
 
+import wanghai.util.MessageFormatter;
+
 import android.util.Log;
 
 public class ALog {

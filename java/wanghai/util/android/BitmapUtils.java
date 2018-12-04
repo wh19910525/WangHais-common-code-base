@@ -15,8 +15,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import static wanghai.util.Utils.LOG_TAG;
-import static wanghai.util.Utils.DEBUG_FLAG;
+import static wanghai.util.android.Utils.LOG_TAG;
+import static wanghai.util.android.Utils.DEBUG_FLAG;
 
 public class BitmapUtils {
 

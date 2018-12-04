@@ -14,9 +14,6 @@ package wanghai.util.android;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import static wanghai.util.Utils.LOG_TAG;
-import static wanghai.util.Utils.DEBUG_FLAG;
-
 public class SystemProperties {
 
     public static String get(String key) {

@@ -15,11 +15,11 @@ import android.view.Gravity;
 import android.os.Handler;
 
 // A: by wanghai at 2018-11-20 {
-import wanghai.util.ALog;
+import wanghai.util.android.ALog;
 
-import wanghai.util.Utils;
-import static wanghai.util.Utils.DEBUG_FLAG;
-import static wanghai.util.Utils.LOG_TAG;
+import wanghai.util.android.Utils;
+import static wanghai.util.android.Utils.DEBUG_FLAG;
+import static wanghai.util.android.Utils.LOG_TAG;
 // wanghai }
 
 public class TestMainActivity extends Activity {
