@@ -10,3 +10,31 @@ git clone https://github.com/wh19910525/WangHais-common-code-base.git
 
 ====================================
 
+vim ~/.bashrc
+#export wanghai usual code base
+export WANGHAI_CODE_BASE_PATH="/home/public/qinchengqiang/wanghai/WangHais-common-code-base"
+export PYTHONPATH=${PYTHONPATH}:"${WANGHAI_CODE_BASE_PATH}/python"
+export WANGHAI_USUAL_SHELL_CMD="${WANGHAI_CODE_BASE_PATH}/shell/wanghai_common_shell_functions.sh"
+
+####################### 1. C 或者 CPP 使用 #######################
+
+# 1.1. Android.mk 修改:
+LOCAL_C_INCLUDES += \
+    $(WANGHAI_CODE_BASE_PATH)/include
+
+LOCAL_CFLAGS += -DBUILD_ANDROID
+
+# 1.1.1. 在 AOSP里, 使用 log:
+LOCAL_SHARED_LIBRARIES += \
+    liblog
+
+# 1.1.2. 在 NDK里, 使用 log:
+LOCAL_CFLAGS += -DUSE_NDK_BUILD
+
+# 1.2. C/Cpp 文件里的修改:
+#include "wanghai_debug.h"
+
+MY_DEBUG("");
+
+
+
