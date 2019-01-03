@@ -52,6 +52,12 @@ def my_info(format_str='', *args):
 def info(format_str='', *args):
     output_info(format_str % args)
 
+def i(format_str='', *args):
+    output_info(format_str % args)
+
+def I(format_str='', *args):
+    output_info(format_str % args)
+
 ###############################################
 def MY_DEBUG(print_info=''):
     if isset('ENABLE_DEBUG') and ENABLE_DEBUG:
@@ -74,6 +80,14 @@ def my_debug(print_info=''):
         output_info(print_info)
 
 def debug(print_info=''):
+    if isset('ENABLE_DEBUG') and ENABLE_DEBUG:
+        output_info(print_info)
+
+def d(print_info=''):
+    if isset('ENABLE_DEBUG') and ENABLE_DEBUG:
+        output_info(print_info)
+
+def D(print_info=''):
     if isset('ENABLE_DEBUG') and ENABLE_DEBUG:
         output_info(print_info)
 
