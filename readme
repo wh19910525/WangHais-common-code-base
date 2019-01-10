@@ -12,7 +12,7 @@ git clone https://github.com/wh19910525/WangHais-common-code-base.git
 
 vim ~/.bashrc
 #export wanghai usual code base
-export WANGHAI_CODE_BASE_PATH="/home/public/qinchengqiang/wanghai/WangHais-common-code-base"
+export WANGHAI_CODE_BASE_PATH="/home/wanghai/workspace/wanghai_github/WangHais-common-code-base"
 export PYTHONPATH=${PYTHONPATH}:"${WANGHAI_CODE_BASE_PATH}/python"
 export WANGHAI_USUAL_SHELL_CMD="${WANGHAI_CODE_BASE_PATH}/shell/wanghai_common_shell_functions.sh"
 

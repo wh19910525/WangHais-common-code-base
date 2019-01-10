@@ -7,8 +7,8 @@
 /*
  * 控制 debug 开关;
  */
-#define DEBUG_FLAG
-//#undef  DEBUG_FLAG
+#define ENABLE_DEBUG
+//#undef ENABLE_DEBUG
 
 /*
  * 如果 使用 Aosp里的 libs, 添加以下 这个flag;
@@ -25,23 +25,24 @@
  */
 
 /*
- * 如果要 重新 定义 Android LOG_TAG, 就 把 以下的代码, 放到 include <wanghai_debug.h> 的 下面;
+ * 如果要 重新 定义 LOG_TAG, 就 把 以下的代码, 放到 include <wanghai_debug.h> 之前;
  *
- *   #ifndef LOG_TAG
- *   #define LOG_TAG "new_tag"
- *   #endif
+ *   #undef LOG_TAG
+ *   #define LOG_TAG "xxx"
  */
-#undef LOG_TAG
+#ifndef LOG_TAG
 #define LOG_TAG "wanghai_debug"
+#endif
+
 /*
- * 如果要 重新 定义 MY_TAG, 就 把 以下的代码, 放到 include <wanghai_debug.h> 的 下面;
+ * 如果要 重新 定义 MY_TAG, 就 把 以下的代码, 放到 include <wanghai_debug.h> 之前;
  *
- *   #ifndef MY_TAG
- *   #define MY_TAG "<<-- wanghai-debug -->>"
- *   #endif
+ *   #undef MY_TAG
+ *   #define MY_TAG "<<-- xxx-debug -->>"
  */
-#undef MY_TAG
+#ifndef MY_TAG
 #define MY_TAG "<<-- wanghai-debug -->>"
+#endif
 
 ///////////////////////////////////////////////
 #ifdef BUILD_ANDROID
@@ -65,7 +66,7 @@
 
 #endif //USE_NDK_BUILD
 
-#ifdef DEBUG_FLAG
+#ifdef ENABLE_DEBUG
 #define MY_DEBUG(fmt, ...) \
     ALOGE(MY_TAG " @%s, line=[%d], " fmt, __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
@@ -78,7 +79,7 @@
 #else //BUILD_ANDROID
 
 //使用 printf 打印:
-#ifdef DEBUG_FLAG
+#ifdef ENABLE_DEBUG
 #define MY_DEBUG(fmt, ...) \
     printf(MY_TAG " @%s, line=[%d], " fmt "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else

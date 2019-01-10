@@ -5,12 +5,13 @@
 #######################################
 
 :<<!
-每一个 程序最好添加 这个判断;
 ##########################################
-#
-# Wang Hai's commonly used linux commands.
-#
-if [ -z ${WANGHAI_USUAL_SHELL_CMD} ];then
+# 每一个 程序最好添加 这个判断
+##########################################
+# Wang Hai's usual linux shell commands. #
+##########################################
+
+if [ ! -e ${WANGHAI_USUAL_SHELL_CMD} ];then
     echo -en "\033[32m"
     echo "please import Wang Hai's commonly used linux commands."
     echo -en "\033[0m"
