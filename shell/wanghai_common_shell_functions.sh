@@ -72,5 +72,18 @@ confirm_selection(){
     fi
 }
 
+############### func-004, check root ##############
+check_root()
+{
+    if [ "$(id -u)" != "0" ]; then
+        echo
+        print_color "!!!! This script must be run as root !!!"
+        print_color "USAGE: please use command:[sudo su] -- change to account root if your account is sudo user"
+        exit 1
+    else
+        print_color "    OK.... you are running by root.. system will keep going..."
+        echo
+    fi
+}
 
 
