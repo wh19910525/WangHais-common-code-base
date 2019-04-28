@@ -115,4 +115,81 @@ public class Utils {
         return theScreenResolution;
     }
 
+
+    /*
+     * 从 Linux /sysfs/ 下的文件里, 读取数据;
+     *
+     * 从 path里 读取一个字节:
+     *  value 为0, 返回 false;
+     *  value 为1, 返回 true;
+     *
+     */
+    private boolean getLinuxSysfsFileValue(String path){
+
+        File file = new File(path);
+        if(!file.exists()) {
+            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}] no exist", path);
+            return false;
+        }   
+
+        boolean ret = false;
+        byte[] read_buf = new byte[1];
+
+        try {
+            FileInputStream fis = new FileInputStream(path);
+            fis.read(read_buf);
+            fis.close();
+
+            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}], value[{}]", path, read_buf[0]-48);
+            /*  
+             * 发现 驱动里读取到的是字符 '0' 或者 '1',
+             * 因此 这里读取到的是 字符的 ascii;
+             */
+            if((read_buf[0]-48) == 0){ 
+                return false;
+            }else{
+                return true;
+            }
+        } catch (FileNotFoundException e) {
+            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}] Not Found", path);
+            ret = false;
+            e.printStackTrace();
+        } catch (IOException e) {
+            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}] IO Exception", path);
+            ret = false;
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    /*
+     * 往 Linux /sysfs/ 下的文件里, 写数据;
+     *
+     *  写失败, 返回 false;
+     *  写成功, 返回 true;
+     *
+     */
+    private boolean setLinuxSysfsFileValue(String path, String value){
+        File file = new File(path);
+        if(!file.exists()) {
+            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}] no exist", path);
+            return false;
+        }
+
+        boolean ret = false;
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            fos.write(value.getBytes());
+            fos.close();
+            ret = true;
+        } catch (FileNotFoundException e) {
+            ret = false;
+            e.printStackTrace();
+        } catch (IOException e) {
+            ret = false;
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
 }
