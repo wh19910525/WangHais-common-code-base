@@ -6,6 +6,9 @@ import android.graphics.ImageFormat;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.OutputStream;
 import android.util.Log;
 
@@ -119,18 +122,18 @@ public class Utils {
     /*
      * 从 Linux /sysfs/ 下的文件里, 读取数据;
      *
-     * 从 path里 读取一个字节:
-     *  value 为0, 返回 false;
-     *  value 为1, 返回 true;
+     * 从 path里 读取一个字节 value:
+     *  value == 0, 返回 false;
+     *  value != 0, 返回 true;
      *
      */
-    private boolean getLinuxSysfsFileValue(String path){
+    public static boolean getLinuxSysfsFileValue(String path){
 
         File file = new File(path);
         if(!file.exists()) {
-            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}] no exist", path);
+            ALog.D(LOG_TAG, DEBUG_FLAG, "file[{}] no exist", path);
             return false;
-        }   
+        }
 
         boolean ret = false;
         byte[] read_buf = new byte[1];
@@ -140,25 +143,26 @@ public class Utils {
             fis.read(read_buf);
             fis.close();
 
-            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}], value[{}]", path, read_buf[0]-48);
-            /*  
+            ALog.D(LOG_TAG, DEBUG_FLAG, "file[{}], value[{}]", path, read_buf[0]-48);
+            /*
              * 发现 驱动里读取到的是字符 '0' 或者 '1',
              * 因此 这里读取到的是 字符的 ascii;
              */
-            if((read_buf[0]-48) == 0){ 
+            if((read_buf[0]-48) == 0){
                 return false;
             }else{
                 return true;
             }
         } catch (FileNotFoundException e) {
-            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}] Not Found", path);
+            ALog.I(LOG_TAG, "file[{}] Not Found", path);
             ret = false;
             e.printStackTrace();
         } catch (IOException e) {
-            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}] IO Exception", path);
+            ALog.I(LOG_TAG, "file[{}] IO Exception", path);
             ret = false;
             e.printStackTrace();
         }
+
         return ret;
     }
 
@@ -172,7 +176,7 @@ public class Utils {
     private boolean setLinuxSysfsFileValue(String path, String value){
         File file = new File(path);
         if(!file.exists()) {
-            Log.D(LOG_TAG, DEBUG_FLAG, "file[{}] no exist", path);
+            ALog.D(LOG_TAG, DEBUG_FLAG, "file[{}] no exist", path);
             return false;
         }
 
@@ -181,7 +185,8 @@ public class Utils {
             FileOutputStream fos = new FileOutputStream(path);
             fos.write(value.getBytes());
             fos.close();
-            ret = true;
+
+            return true;
         } catch (FileNotFoundException e) {
             ret = false;
             e.printStackTrace();

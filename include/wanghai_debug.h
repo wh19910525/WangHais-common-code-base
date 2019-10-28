@@ -5,9 +5,9 @@
 
 ///////////////////////////////////////////////
 /*
- * 控制 debug 开关;
+ * 全局控制 debug 开关;
  */
-#define ENABLE_DEBUG
+//#define ENABLE_DEBUG
 //#undef ENABLE_DEBUG
 
 /*
@@ -136,5 +136,6 @@
 #define PRINT_IF    MY_INFO_IF
 #define log_if      MY_INFO_IF
 #define LOG_IF      MY_INFO_IF
+#define oem_info_if MY_INFO_IF
 
 #endif //__MY_DEBUG__
