@@ -38,6 +38,9 @@ MY_DEBUG("");
 
 
 ####################### 2. Java 使用 #######################
+在 Android.mk 里, 添加:
+LOCAL_SRC_FILES += \
+    $(call all-java-files-under, ../../shared_submodules/WangHais-common-code-base/java/wanghai/util)
 
 
 
