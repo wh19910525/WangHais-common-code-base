@@ -1,5 +1,5 @@
-#ifndef __MY_DEBUG__
-#define __MY_DEBUG__
+#ifndef __WANGHAI_DEBUG__
+#define __WANGHAI_DEBUG__
 
 #include "wanghai_c_code_interface.h"
 
@@ -81,61 +81,60 @@
 #endif
 
 /*
- * 开关控制 打印接口;
- */
-#ifdef ENABLE_DEBUG
-#define MY_DEBUG(fmt, ...) \
-    ((void)print_interface(MY_TAG " @%s, line:[%d], " fmt, __func__, __LINE__, ##__VA_ARGS__))
-#else
-#define MY_DEBUG(fmt, ...) //
-#endif
-
-/*
  * 强制 打印接口;
  */
-#define MY_INFO(fmt, ...) \
+#define MY__INFO(fmt, ...) \
     ((void)print_interface(MY_TAG " @%s, line:[%d], " fmt, __func__, __LINE__, ##__VA_ARGS__))
 
 /*
  * 条件控制 打印接口;
  */
-#define MY_INFO_IF(cond, fmt, ...) \
-    ( cond ? ((void)print_interface(MY_TAG " @%s, line:[%d], " fmt, __func__, __LINE__, ##__VA_ARGS__)) : (void)0 )
+#define MY__INFO_IF(cond, fmt, ...) \
+    ( cond ? (MY__INFO(fmt, ##__VA_ARGS__)) : (void)0 )
+
+/*
+ * 开关控制 打印接口;
+ */
+#ifdef ENABLE_DEBUG
+#define MY__DEBUG(fmt, ...) MY__INFO(fmt, ##__VA_ARGS__)
+#else
+#define MY__DEBUG(fmt, ...) //
+#endif
 
 /*
  * 定义 常用调试接口 别名
  */
 
 /* 开关控制 打印接口 */
-#define DBG         MY_DEBUG
-#define DEBUG       MY_DEBUG
-#define D           MY_DEBUG
-#define dbg         MY_DEBUG
-#define my_dbg      MY_DEBUG
-#define oem_dbg     MY_DEBUG
-#define OEM_DBG     MY_DEBUG
-#define OEM_DEBUG   MY_DEBUG
-#define trance      MY_DEBUG
-#define TRANCE      MY_DEBUG
+#define DBG         MY__DEBUG
+#define DEBUG       MY__DEBUG
+#define D           MY__DEBUG
+#define dbg         MY__DEBUG
+#define my_dbg      MY__DEBUG
+#define oem_dbg     MY__DEBUG
+#define OEM_DBG     MY__DEBUG
+#define OEM_DEBUG   MY__DEBUG
+#define trance      MY__DEBUG
+#define TRANCE      MY__DEBUG
 
 
 /* 强制 打印接口 */
-#define INFO        MY_INFO
-#define I           MY_INFO
-#define info        MY_INFO
-#define my_info     MY_INFO
-#define oem_info    MY_INFO
-#define OEM_INFO    MY_INFO
-#define PRINT       MY_INFO
-#define print       MY_INFO
+#define INFO        MY__INFO
+#define I           MY__INFO
+#define info        MY__INFO
+#define my_info     MY__INFO
+#define oem_info    MY__INFO
+#define OEM_INFO    MY__INFO
+#define PRINT       MY__INFO
+#define print       MY__INFO
 
 /* 条件控制 打印接口 */
-#define info_if     MY_INFO_IF
-#define INFO_IF     MY_INFO_IF
-#define print_if    MY_INFO_IF
-#define PRINT_IF    MY_INFO_IF
-#define log_if      MY_INFO_IF
-#define LOG_IF      MY_INFO_IF
-#define oem_info_if MY_INFO_IF
+#define info_if     MY__INFO_IF
+#define INFO_IF     MY__INFO_IF
+#define print_if    MY__INFO_IF
+#define PRINT_IF    MY__INFO_IF
+#define log_if      MY__INFO_IF
+#define LOG_IF      MY__INFO_IF
+#define oem_info_if MY__INFO_IF
 
-#endif //__MY_DEBUG__
+#endif //__WANGHAI_DEBUG__
